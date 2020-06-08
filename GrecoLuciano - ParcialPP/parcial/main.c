@@ -6,13 +6,17 @@
 #define TLCLIENTES 10
 #define TLMASCOTAS 20
 #define TLRAZAS 8
+#define TLLOCALIDADES 3
 
 int main()
 {
     eRaza listadoRazas[TLMASCOTAS];
     eMascota listadoMascotas[TLMASCOTAS];
+    eLocalidad listadoLocalidades[TLLOCALIDADES];
     eCliente listadoClientes[TLCLIENTES];
 
+    harcodeoListadoLocalidades( listadoLocalidades , TLLOCALIDADES );
+    initLocalidades( listadoLocalidades , TLLOCALIDADES );
     harcodeoListadoClientes( listadoClientes , TLCLIENTES );
     initClientesLibres( listadoClientes , TLCLIENTES );
 

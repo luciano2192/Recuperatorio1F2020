@@ -11,7 +11,7 @@ void harcodeoListadoClientes( eCliente listadoClientes[] , int len ) {
     int idCliente[7] = { 100 , 101 , 102 , 103 , 104 , 105 , 106 };
     char name[7][30] = { "nombreUNO" , "nombreDOS" , "nombreTRES" , "nombreCUATRO" , "nombreCINCO" , "nombreSEIS" , "nombreSIETE" };
     char lastName[7][30] = { "apellidoUNO" , "apellidoDOS" , "apellidoTRES" , "apellidoCUATRO" , "apellidoCINCO" , "apellidoSEIS" , "apellidoSIETE" };
-    char localidad[7][51] = { "localidadUNO" , "localidadDOS" , "localidadTRES" , "localidadCUATRO" , "localidadCINCO" , "localidadSEIS" , "localidadSIETE" };
+    int localidad[7] = { 1 , 2 , 3 , 1 , 2 , 3 , 1 };
     long int telefono[7] = { 1143189434 , 1156346789 , 1198345632 , 1134567843 , 1134567430 , 1134567430 , 1134567430 };
     int edad[7] = { 34 , 12 , 53 , 22 , 26 , 53 , 22 };
     char sexo[7] = { 'f' , 'm' , 'f' , 'm' , 'm' , 'f' , 'm' };
@@ -28,6 +28,22 @@ void harcodeoListadoClientes( eCliente listadoClientes[] , int len ) {
         listadoClientes[i].edad = edad[i];
         listadoClientes[i].sexo = sexo[i];
         listadoClientes[i].isEmpty = isEmpty[i];
+    };
+}
+
+void harcodeoListadoLocalidades( eLocalidad listadoLocalidades[] , int len ) {
+    int idLocalidad[3] = { 1 , 2 , 3 };
+    char provincia[3][30] = { "Buenos Aires" , "Rosario" , "La Pampa" };
+    char descripcion[3][30] = { "Quilmes" , "Rosario" , "Santa Rosa" };
+    int codPostal[3] = { 1832 , 1833 , 1834 };
+    int isEmpty[3] = { FALSE , FALSE , FALSE };
+
+    for( int i = 0 ; i < len ; i++ ) {
+        listadoLocalidades[i].idLocalidad = idLocalidad[i];
+        strcpy( listadoLocalidades[i].provincia , provincia[i] );
+        strcpy( listadoLocalidades[i].descripcion , descripcion[i] );
+        listadoLocalidades[i].codPostal = codPostal[i];
+        listadoLocalidades[i].isEmpty = isEmpty[i];
     };
 }
 
@@ -59,6 +75,18 @@ int menuModificarCliente() {
     printf("\n");
     return menu;
 }
+
+int initLocalidades( eLocalidad listadoLocalidades[] , int len ) {
+    int salida = -1;
+    int i;
+    if( listadoLocalidades != NULL && len > 0 ) {
+        for( i = 0 ; i < len ; i++ ) {
+            listadoLocalidades[i].isEmpty = TRUE;
+        }
+        salida = 0;
+    }
+    return salida;
+};
 
 int initClientes( eCliente listadoClientes[] , int len ) {
     int salida = -1;

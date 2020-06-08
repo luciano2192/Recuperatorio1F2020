@@ -1,8 +1,18 @@
 typedef struct {
+    int idLocalidad;
+    char provincia[30];
+    char descripcion[50];
+    int codPostal;
+    int isEmpty;
+} eLocalidad;
+
+
+typedef struct {
     int idCliente;
     char name[30];
     char lastName[30];
-    char localidad[51];
+    //char localidad[51];
+    int idLocalidad;
     long int telefono;
     int edad;
     char sexo;
@@ -10,6 +20,8 @@ typedef struct {
 } eCliente;
 
 void harcodeoListadoClientes( eCliente listadoClientes[] , int len );
+
+void harcodeoListadoLocalidades( eLocalidad listadoLocalidades[] , int len );
 
 int initClientes( eCliente listadoClientes[] , int len );
 

@@ -15,12 +15,12 @@ int main()
     eLocalidad listadoLocalidades[TLOCALIDADES];
     eCliente listadoClientes[TLCLIENTES];
 
-    initLocalidades( listadoLocalidades , TLOCALIDADES );
-    harcodeoListadoLocalidades( listadoLocalidades , TLOCALIDADES );
 
     harcodeoListadoClientes( listadoClientes , TLCLIENTES );
     initClientesLibres( listadoClientes , TLCLIENTES );
 
+    initLocalidades( listadoLocalidades , TLOCALIDADES );
+    harcodeoListadoLocalidades( listadoLocalidades , TLOCALIDADES );
 
     initRazas( listadoRazas , TLRAZAS );
     harcodeoListadoRaza( listadoRazas , TLMASCOTAS );

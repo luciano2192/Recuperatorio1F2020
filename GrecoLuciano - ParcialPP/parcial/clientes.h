@@ -6,7 +6,6 @@ typedef struct {
     int isEmpty;
 } eLocalidad;
 
-
 typedef struct {
     int idCliente;
     char name[30];

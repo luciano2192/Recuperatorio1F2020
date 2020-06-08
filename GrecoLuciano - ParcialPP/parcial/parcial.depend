@@ -141,17 +141,17 @@
 
 1590853362 c:\users\lucho\desktop\recuperatorio1f2020\grecoluciano - parcialpp\parcial\mascotas.h
 
-1591657631 c:\users\lucho\desktop\recuperatorio1f2020\grecoluciano - parcialpp\parcial\clientes.h
+1591658120 c:\users\lucho\desktop\recuperatorio1f2020\grecoluciano - parcialpp\parcial\clientes.h
 
 1589601812 c:\users\lucho\desktop\recuperatorio1f2020\grecoluciano - parcialpp\parcial\utn_funciones.h
 
-1591657864 source:c:\users\lucho\desktop\recuperatorio1f2020\grecoluciano - parcialpp\parcial\clientes.c
+1591657885 source:c:\users\lucho\desktop\recuperatorio1f2020\grecoluciano - parcialpp\parcial\clientes.c
 	<stdio.h>
 	<stddef.h>
 	<string.h>
 	"clienteMascota.h"
 
-1591655962 source:c:\users\lucho\desktop\recuperatorio1f2020\grecoluciano - parcialpp\parcial\main.c
+1591658285 source:c:\users\lucho\desktop\recuperatorio1f2020\grecoluciano - parcialpp\parcial\main.c
 	<stdio.h>
 	<stddef.h>
 	<string.h>

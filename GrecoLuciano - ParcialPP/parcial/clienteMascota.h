@@ -29,3 +29,5 @@ int ingresarDatosDeUnaMascota( eMascota listadoMascotas[] , int lenM , eRaza lis
 int modificarMascota( eMascota listadoMascotas[] , int len , eCliente listadoClientes[] , int lenC , eRaza listadoRazas[] , int lenR );
 
 void mostrarClientesConMascotasDelMismoSexo( eMascota listadoMascotas[] , int lenM ,  eCliente listadoClientes[] , int lenC );
+
+void mostrarClientesConSusMascotasYLocalidad( eMascota listadoMascotas[] , int lenM ,  eCliente listadoClientes[] , int lenC , eLocalidad listadoLocalidades[] , int lenL );

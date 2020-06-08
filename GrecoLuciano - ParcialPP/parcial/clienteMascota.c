@@ -31,8 +31,9 @@ int menuABM( int lugaresDisponiblesMascotas , int lugaresDisponiblesClientes ) {
     printf( "\n18) Edad promedio de los clientes" );
     printf( "\n19) Porcentaje que tengo de mujeres sobre el total de clientes" );
     printf( "\n20) Listar los dueños que tienen mascotas del mismo sexo." );
-    printf( "\n21) Salir.\n" );
-    printf( "\nSeleccionar una opcion <1-21>: " );
+    printf( "\n21) Listado de clientes con mascotas y localidad." );
+    printf( "\n22) Salir.\n" );
+    printf( "\nSeleccionar una opcion <1-22>: " );
     scanf( "%d" , &menu );
     printf("\n");
     return menu;
@@ -551,6 +552,44 @@ int ingresarDatosDeXMascotas( eMascota listadoMascotas[] , int lenM , eRaza list
     return salida;
 }
 
+void mostrarClientesConSusMascotasYLocalidad( eMascota listadoMascotas[] , int lenM ,  eCliente listadoClientes[] , int lenC , eLocalidad listadoLocalidades[] , int lenL ) {
+    int tieneMascota;
+    if( listadoMascotas != NULL && lenM > 0 && listadoClientes != NULL && lenC > 0 ) {
+        for( int i = 0 ; i < lenC ; i++ ) {
+            for( int k = 0 ; k < lenL ; k++ ) {
+                if( listadoClientes[i].isEmpty == FALSE && listadoLocalidades[k].isEmpty == FALSE ) {
+                tieneMascota = FALSE;
+                printf("\n---------------------------------------------------------------------------------------------");
+                printf("\nCLIENTE : | ID: %d | %s %s | LOCALIDAD: %s" , listadoClientes[i].idCliente
+                                                        , listadoClientes[i].name
+                                                        , listadoClientes[i].lastName
+                                                        , listadoLocalidades[k].descripcion);
+                printf("\nLISTADO DE SUS MASCOTAS");
+                imprimirColumnasTablaMascotas();
+                for( int j = 0 ; j < lenM ; j++ ) {
+                    if( (listadoMascotas[j].isEmpty == FALSE) && (listadoClientes[i].idCliente == listadoMascotas[j].idCliente) ) {
+                        tieneMascota = TRUE;
+                        printf( "\n%3d %16s %22s %22d %9d %7.2f %4c" ,
+                                                                        listadoMascotas[j].idMascota ,
+                                                                        listadoMascotas[j].name ,
+                                                                        listadoMascotas[j].tipo ,
+                                                                        listadoMascotas[j].idRaza ,
+                                                                        listadoMascotas[j].edad ,
+                                                                        listadoMascotas[j].peso ,
+                                                                        listadoMascotas[j].sexo );
+                    }
+                }
+                if( tieneMascota == FALSE ) {
+                    printf("\nNO TIENE MASCOTAS");
+                }
+                printf("\n---------------------------------------------------------------------------------------------");
+            }
+            }
+        }
+
+    }
+}
+
 void menuAdministracionClienteMascota( eMascota listadoMascotas[] , int lenM , eCliente listadoClientes[] , int lenC , eRaza listadoRazas[] , int lenR , eLocalidad listadoLocalidades[] , int lenL ) {
     int menu;
     int mascotaCargada;
@@ -635,8 +674,11 @@ void menuAdministracionClienteMascota( eMascota listadoMascotas[] , int lenM , e
                 mostrarClientesConMascotasDelMismoSexo( listadoMascotas , lenM , listadoClientes , lenC );
                 break;
             case 21:
+                mostrarClientesConSusMascotasYLocalidad( listadoMascotas , lenM , listadoClientes , lenC , listadoLocalidades , lenL );
+                break;
+            case 22:
                 break;
         }
 
-    } while( menu != 21 );
+    } while( menu != 22 );
 }

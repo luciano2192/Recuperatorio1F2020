@@ -10,7 +10,7 @@ void imprimirListadoMascotas( eMascota listadoMascotas[] , eCliente listadoClien
 
 void mostrarClientesDisponibles( eMascota listadoMascotas[] , int lenM ,  eCliente listadoClientes[] , int lenC );
 
-void menuAdministracionClienteMascota( eMascota listadoMascotas[] , int lenM , eCliente listadoClientes[] , int lenC , eRaza listadoRazas[] , int lenR );
+void menuAdministracionClienteMascota( eMascota listadoMascotas[] , int lenM , eCliente listadoClientes[] , int lenC , eRaza listadoRazas[] , int lenR , eLocalidad listadoLocalidades[] , int lenL );
 
 void mostrarMascotasOrdenadasPorTipoConCliente( eMascota listadoMascotas[] , int lenM ,  eCliente listadoClientes[] , int lenC );
 

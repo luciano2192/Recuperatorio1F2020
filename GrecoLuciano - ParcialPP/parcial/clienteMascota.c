@@ -290,13 +290,13 @@ void mostrarClientesOrdenadosPorCantidadDeMascotas( eMascota listadoMascotas[] ,
         imprimirColumnasTablaCantidadMascotasPorCliente();
         for( int i = 0 ; i < lenC ; i++ ) {
             if( listadoClientes[i].isEmpty == FALSE ) {
-                printf( "\n%4d %10d %28s %22s %12d %7c %20s %20li" , listadoClientes[i].idCliente
+                printf( "\n%4d %10d %28s %22s %12d %7c %20d %20li" , listadoClientes[i].idCliente
                                                                       , contadorMascotas[i]
                                                                       , listadoClientes[i].name
                                                                       , listadoClientes[i].lastName
                                                                       , listadoClientes[i].edad
                                                                       , listadoClientes[i].sexo
-                                                                      , listadoClientes[i].localidad
+                                                                      , listadoClientes[i].idLocalidad
                                                                       , listadoClientes[i].telefono );
             }
         }
@@ -347,13 +347,13 @@ void mostrarClientesOrdenadosPorCantidadDeMascotasYNombreCliente( eMascota lista
         imprimirColumnasTablaCantidadMascotasPorCliente();
         for( int i = 0 ; i < lenC ; i++ ) {
             if( listadoClientes[i].isEmpty == FALSE ) {
-                printf( "\n%4d %10d %28s %22s %12d %7c %20s %20li" , listadoClientes[i].idCliente
+                printf( "\n%4d %10d %28s %22s %12d %7c %20d %20li" , listadoClientes[i].idCliente
                                                                       , contadorMascotas[i]
                                                                       , listadoClientes[i].name
                                                                       , listadoClientes[i].lastName
                                                                       , listadoClientes[i].edad
                                                                       , listadoClientes[i].sexo
-                                                                      , listadoClientes[i].localidad
+                                                                      , listadoClientes[i].idLocalidad
                                                                       , listadoClientes[i].telefono );
             }
         }
@@ -551,7 +551,7 @@ int ingresarDatosDeXMascotas( eMascota listadoMascotas[] , int lenM , eRaza list
     return salida;
 }
 
-void menuAdministracionClienteMascota( eMascota listadoMascotas[] , int lenM , eCliente listadoClientes[] , int lenC , eRaza listadoRazas[] , int lenR ) {
+void menuAdministracionClienteMascota( eMascota listadoMascotas[] , int lenM , eCliente listadoClientes[] , int lenC , eRaza listadoRazas[] , int lenR , eLocalidad listadoLocalidades[] , int lenL ) {
     int menu;
     int mascotaCargada;
     int clienteCargado;
@@ -570,7 +570,7 @@ void menuAdministracionClienteMascota( eMascota listadoMascotas[] , int lenM , e
                 break;
             case 2:
                 imprimirClientes( listadoClientes , lenC );
-                if( ingresarDatosDeXClientes( listadoClientes , lenC ) == 0 ) {
+                if( ingresarDatosDeXClientes( listadoClientes , lenC,listadoLocalidades,lenL) == 0 ) {
                     imprimirClientes( listadoClientes , lenC );
                 }
                 break;
@@ -590,7 +590,7 @@ void menuAdministracionClienteMascota( eMascota listadoMascotas[] , int lenM , e
                     break;
             }
             case 6:
-                modificarCliente( listadoClientes , lenC );
+                modificarCliente( listadoClientes , lenC , listadoLocalidades , lenL );
                 break;
             case 7:
                 imprimirClientes( listadoClientes , lenC );

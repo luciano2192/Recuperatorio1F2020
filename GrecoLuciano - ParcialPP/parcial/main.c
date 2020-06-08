@@ -26,7 +26,7 @@ int main()
     harcodeoListadoMascotas( listadoMascotas , TLMASCOTAS );
     initMascotaLibres( listadoMascotas , TLMASCOTAS );
 
-    menuAdministracionClienteMascota( listadoMascotas , TLMASCOTAS , listadoClientes , TLCLIENTES , listadoRazas , TLRAZAS );
+    menuAdministracionClienteMascota( listadoMascotas , TLMASCOTAS , listadoClientes , TLCLIENTES , listadoRazas , TLRAZAS , listadoLocalidades , TLLOCALIDADES );
 
     return 0;
 }

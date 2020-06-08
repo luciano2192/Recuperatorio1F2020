@@ -23,7 +23,7 @@ void harcodeoListadoClientes( eCliente listadoClientes[] , int len ) {
         formatearString( listadoClientes[i].lastName );
         strcpy( listadoClientes[i].name , name[i] );
         strcpy( listadoClientes[i].lastName , lastName[i] );
-        strcpy( listadoClientes[i].localidad , localidad[i] );
+        listadoClientes[i].idLocalidad = localidad[i];
         listadoClientes[i].telefono = telefono[i];
         listadoClientes[i].edad = edad[i];
         listadoClientes[i].sexo = sexo[i];
@@ -117,7 +117,7 @@ int initClientesLibres( eCliente listadoClientes[] , int len ) {
 int imprimirUnCliente( eCliente cliente ) {
     int salida = -1;
     if( cliente.isEmpty == FALSE ) {
-        printf( "\n%4d %17s %25s %11d %6c %21s %20li" , cliente.idCliente , cliente.name , cliente.lastName , cliente.edad , cliente.sexo , cliente.localidad , cliente.telefono );
+        printf( "\n%4d %17s %25s %11d %6c %21d %20li" , cliente.idCliente , cliente.name , cliente.lastName , cliente.edad , cliente.sexo , cliente.idLocalidad , cliente.telefono );
         salida = 0;
     }
     return salida;
@@ -135,6 +135,13 @@ void imprimirColumnasDatosCliente() {
     printf("\n-------------------------------------------------------------------------------------------------------------------");
     printf("\n| ID |        NOMBRE         |        APELLIDO        |  EDAD  | SEXO |       LOCALIDAD        |     TELEFONO     |");
     printf("\n-------------------------------------------------------------------------------------------------------------------");
+}
+
+void imprimirColumnasDatosLocalidades() {
+    printf("\n--------------------------DATOS LOCALIDADES---------------------------------");
+    printf("\n----------------------------------------------------------------------------");
+    printf("\n| ID |        PROVINCIA         |        DESCRIPCION        |  COD.POSTAL  |");
+    printf("\n----------------------------------------------------------------------------");
 }
 
 int imprimirClientes( eCliente listadoClientes[] , int len ) {
@@ -189,17 +196,16 @@ int aumentarIDCliente( eCliente listadoClientes[] , int len ) {
     return maximo+1;
 }
 
-int addCliente( eCliente listadoClientes[] , int len , char name[] , char lastName[] , char localidad[] , long int telefono , int edad , char sexo ) {
+int addCliente( eCliente listadoClientes[] , int len , char name[] , char lastName[] , int localidad , long int telefono , int edad , char sexo ) {
     int salida = -1;
     int index = findFreeSpaceCliente( listadoClientes , len );
     if( index != salida && listadoClientes != NULL && len > 0 ) {
         listadoClientes[index].idCliente = aumentarIDCliente( listadoClientes , len );
         formatearString( name );
         formatearString( lastName );
-        formatearString( localidad );
         strcpy( listadoClientes[index].name , name );
         strcpy( listadoClientes[index].lastName , lastName );
-        strcpy( listadoClientes[index].localidad , localidad );
+        listadoClientes[index].idLocalidad = localidad;
         listadoClientes[index].telefono = telefono;
         listadoClientes[index].edad = edad;
         listadoClientes[index].sexo = sexo;
@@ -238,11 +244,11 @@ void getTelefono( long int* dato , char mensaje[] , char error[] , long int min 
     } while( salida != 0 );
 }
 
-int ingresarDatosDeUnCliente( eCliente listadoClientes[] , int len ) {
+int ingresarDatosDeUnCliente( eCliente listadoClientes[] , int len , eLocalidad listadoLocalidades[] , int lenL ) {
     int salida = -1;
     char auxName[30];
     char auxLastName[30];
-    char auxLocalidad[30];
+    int auxLocalidad;
     long int auxTelefono;
     int auxEdad;
     char auxSexo;
@@ -250,11 +256,11 @@ int ingresarDatosDeUnCliente( eCliente listadoClientes[] , int len ) {
         if( cantidadLugaresDisponiblesClientes(listadoClientes,len) > 0 ) {
             getDatoGenericoString( auxName , "Ingrese nombre: " , "ERROR ! ingrese nuevamente el nombre" , 30 );
             getDatoGenericoString( auxLastName , "Ingrese apellido: " , "ERROR ! ingrese nuevamente el apellido" , 30 );
-            getDatoGenericoString( auxLocalidad , "Ingrese localidad: " , "ERROR ! ingrese nuevamente la localidad" , 30 );
+            imprimirLocalidades(listadoLocalidades,lenL);
+            getDatoGenericoInt( &auxLocalidad , "Ingrese localidad: " , "ERROR ! ingrese nuevamente la localidad" , 1 , 3 , 3 );
             getTelefono( &auxTelefono , "Ingrese el telefono: " , "ERROR ! ingrese nuevamente el telefono" , 0 , 2147483647 );
             formatearString( auxName );
             formatearString( auxLastName );
-            formatearString( auxLocalidad );
             getDatoGenericoInt( &auxEdad , "Ingrese edad: " , "ERROR ! ingrese nuevamente la edad" , 0 , 100 , 3 );
             auxSexo = getDatoGenericoChar("Ingrese el sexo <m-f>: ","ERROR ! ingrese el caracter correspondiente",'m','f');
             addCliente( listadoClientes , len , auxName , auxLastName , auxLocalidad , auxTelefono , auxEdad , auxSexo );
@@ -266,12 +272,12 @@ int ingresarDatosDeUnCliente( eCliente listadoClientes[] , int len ) {
     return salida;
 }
 
-int ingresarDatosDeXClientes( eCliente listadoClientes[] , int len ) {
+int ingresarDatosDeXClientes( eCliente listadoClientes[] , int len , eLocalidad listadoLocalidades[] , int lenL ) {
     int salida = -1;
     char respuesta;
     if( listadoClientes != NULL && len > 0 ) {
         do{
-            if( ingresarDatosDeUnCliente(listadoClientes,len) == 0 ) {
+            if( ingresarDatosDeUnCliente(listadoClientes,len,listadoLocalidades,lenL) == 0 ) {
                 printf("\nCliente ingresado con exito.\n");
             }
             if( cantidadLugaresDisponiblesClientes(listadoClientes,len) > 0 ){
@@ -310,14 +316,14 @@ int bajaCliente( eCliente listadoClientes[] , int len , int id ) {
     return salida;
 }
 
-int modificarCliente( eCliente listadoClientes[] , int len ) {
+int modificarCliente( eCliente listadoClientes[] , int len , eLocalidad listadoLocalidades[] , int lenL ) {
     int salida = -1;
     int menuMod;
     int indexCliente;
     int auxID;
     char auxName[30];
     char auxLastName[30];
-    char auxLocalidad[50];
+    int auxLocalidad;
     long int auxTelefono;
     int auxEdad;
     char auxSexo;
@@ -346,9 +352,9 @@ int modificarCliente( eCliente listadoClientes[] , int len ) {
             salida = 0;
             break;
         case 3:
-            getDatoGenericoString( auxLocalidad , "Ingrese localidad: " , "ERROR ! ingrese nuevamente la localidad" , 50 );
-            formatearString(auxLocalidad);
-            strcpy( listadoClientes[indexCliente].localidad , auxLocalidad );
+            imprimirLocalidades(listadoLocalidades,lenL);
+            getDatoGenericoInt( &auxEdad , "Ingrese localidad: " , "ERROR ! ingrese nuevamente la localidad" , 1 , 3 , 3 );
+            listadoClientes[indexCliente].idLocalidad = auxLocalidad;
             printf( "\nLocalidad modificada con exito.\n" );
             imprimirColumnasTablaClientes();
             imprimirUnCliente( listadoClientes[indexCliente] );
@@ -441,6 +447,24 @@ void porcentajeDeMujeres( eCliente listadoClientes[] , int len ) {
         printf("\n-------------------------------------------------------------------------------------------------------------------");
     }
 }
+
+int imprimirLocalidades( eLocalidad listadoLocalidades[] , int len ) {
+    int salida = -1;
+    int i;
+    if( listadoLocalidades != NULL && len > 0 ) {
+        imprimirColumnasDatosLocalidades();
+        for( i = 0 ; i < len ; i++ ) {
+            if( listadoLocalidades[i].isEmpty == FALSE ) {
+                printf( "\n%4d %17s %25s" , listadoLocalidades[i].idLocalidad
+                                          , listadoLocalidades[i].provincia
+                                          , listadoLocalidades[i].descripcion);
+            }
+        }
+        printf("\n----------------------------------------------------------------------------");
+        salida = 0;
+    }
+    return salida;
+};
 
 
 

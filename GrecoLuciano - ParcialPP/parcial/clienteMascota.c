@@ -32,8 +32,10 @@ int menuABM( int lugaresDisponiblesMascotas , int lugaresDisponiblesClientes ) {
     printf( "\n19) Porcentaje que tengo de mujeres sobre el total de clientes" );
     printf( "\n20) Listar los dueños que tienen mascotas del mismo sexo." );
     printf( "\n21) Listado de clientes con mascotas y localidad." );
-    printf( "\n22) Salir.\n" );
-    printf( "\nSeleccionar una opcion <1-22>: " );
+    printf( "\n22) Listado de clientes por localidad." );
+    printf( "\n23) Listado de clientes ordenados por localidad y nombre." );
+    printf( "\n24) Salir.\n" );
+    printf( "\nSeleccionar una opcion <1-24>: " );
     scanf( "%d" , &menu );
     printf("\n");
     return menu;
@@ -590,6 +592,20 @@ void mostrarClientesConSusMascotasYLocalidad( eMascota listadoMascotas[] , int l
     }
 }
 
+void mostrarClientesPorLocalidad( eCliente listadoClientes[] , int lenC , eLocalidad listadoLocalidades[] , int lenL ) {
+    int auxLocalidad;
+    if( listadoClientes != NULL && listadoLocalidades != NULL && lenC > 0 && lenL > 0 ) {
+        imprimirLocalidades(listadoLocalidades,lenL);
+        getDatoGenericoInt( &auxLocalidad , "Ingrese id localidad: " , "ERROR ! ingrese nuevamente la localidad" , 1 , lenL , 3 );
+        imprimirColumnasTablaClientes();
+        for( int i = 0 ; i < lenC ; i++ ) {
+            if( listadoClientes[i].isEmpty == FALSE && listadoClientes[i].idLocalidad == auxLocalidad ) {
+                imprimirUnCliente(listadoClientes[i]);
+            }
+        }
+    }
+}
+
 void menuAdministracionClienteMascota( eMascota listadoMascotas[] , int lenM , eCliente listadoClientes[] , int lenC , eRaza listadoRazas[] , int lenR , eLocalidad listadoLocalidades[] , int lenL ) {
     int menu;
     int mascotaCargada;
@@ -677,8 +693,14 @@ void menuAdministracionClienteMascota( eMascota listadoMascotas[] , int lenM , e
                 mostrarClientesConSusMascotasYLocalidad( listadoMascotas , lenM , listadoClientes , lenC , listadoLocalidades , lenL );
                 break;
             case 22:
+                mostrarClientesPorLocalidad(listadoClientes , lenC , listadoLocalidades, lenL );
+                break;
+            case 23:
+                mostrarClientesOrdenadosPorLocalidadYNombreCliente( listadoClientes , lenC );
+                break;
+            case 24:
                 break;
         }
 
-    } while( menu != 22 );
+    } while( menu != 24 );
 }

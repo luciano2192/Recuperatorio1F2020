@@ -353,7 +353,7 @@ int modificarCliente( eCliente listadoClientes[] , int len , eLocalidad listadoL
             break;
         case 3:
             imprimirLocalidades(listadoLocalidades,lenL);
-            getDatoGenericoInt( &auxEdad , "Ingrese localidad: " , "ERROR ! ingrese nuevamente la localidad" , 1 , 3 , 3 );
+            getDatoGenericoInt( &auxLocalidad , "Ingrese localidad: " , "ERROR ! ingrese nuevamente la localidad" , 1 , 3 , 3 );
             listadoClientes[indexCliente].idLocalidad = auxLocalidad;
             printf( "\nLocalidad modificada con exito.\n" );
             imprimirColumnasTablaClientes();
@@ -450,14 +450,14 @@ void porcentajeDeMujeres( eCliente listadoClientes[] , int len ) {
 
 int imprimirLocalidades( eLocalidad listadoLocalidades[] , int len ) {
     int salida = -1;
-    int i;
     if( listadoLocalidades != NULL && len > 0 ) {
         imprimirColumnasDatosLocalidades();
-        for( i = 0 ; i < len ; i++ ) {
+        for( int i = 0 ; i < len ; i++ ) {
             if( listadoLocalidades[i].isEmpty == FALSE ) {
-                printf( "\n%4d %17s %25s" , listadoLocalidades[i].idLocalidad
-                                          , listadoLocalidades[i].provincia
-                                          , listadoLocalidades[i].descripcion);
+                printf( "\n%4d %17s %25s %25d" , listadoLocalidades[i].idLocalidad
+                                               , listadoLocalidades[i].provincia
+                                               , listadoLocalidades[i].descripcion
+                                               , listadoLocalidades[i].codPostal);
             }
         }
         printf("\n----------------------------------------------------------------------------");
@@ -466,6 +466,39 @@ int imprimirLocalidades( eLocalidad listadoLocalidades[] , int len ) {
     return salida;
 };
 
+
+void mostrarClientesOrdenadosPorLocalidadYNombreCliente( eCliente listadoClientes[] , int lenC ) {
+    eCliente auxCliente;
+    if( listadoClientes != NULL && lenC > 0 ) {
+        for( int j = 0 ; j < lenC-1 ; j++ ) {
+            for( int i = j+1 ; i < lenC ; i++ ) {
+                if( listadoClientes[j].idLocalidad > listadoClientes[i].idLocalidad ) {
+                    auxCliente = listadoClientes[j];
+                    listadoClientes[j] = listadoClientes[i];
+                    listadoClientes[i] = auxCliente;
+                } else {
+                    if( listadoClientes[j].idLocalidad == listadoClientes[i].idLocalidad && strcmp(listadoClientes[j].name,listadoClientes[i].name) < 0 ) {
+                        auxCliente = listadoClientes[j];
+                        listadoClientes[j] = listadoClientes[i];
+                        listadoClientes[i] = auxCliente;
+                    }
+                }
+            }
+        }
+        imprimirColumnasTablaClientes();
+        for( int i = 0 ; i < lenC ; i++ ) {
+            if( listadoClientes[i].isEmpty == FALSE ) {
+                printf( "\n%4d %20s %22s %12d %7c %20d %20li" , listadoClientes[i].idCliente
+                                                                      , listadoClientes[i].name
+                                                                      , listadoClientes[i].lastName
+                                                                      , listadoClientes[i].edad
+                                                                      , listadoClientes[i].sexo
+                                                                      , listadoClientes[i].idLocalidad
+                                                                      , listadoClientes[i].telefono );
+            }
+        }
+    }
+}
 
 
 

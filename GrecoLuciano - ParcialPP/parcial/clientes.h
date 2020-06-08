@@ -27,6 +27,8 @@ int initClientes( eCliente listadoClientes[] , int len );
 
 int initClientesLibres( eCliente listadoClientes[] , int len );
 
+int initLocalidades( eLocalidad listadoLocalidades[] , int len );
+
 void imprimirColumnasTablaClientes();
 
 void imprimirColumnasDatosCliente();
@@ -64,3 +66,5 @@ int modificarCliente( eCliente listadoClientes[] , int len , eLocalidad listadoL
 void edadPromedioVaronesYMujeres( eCliente listadoClientes[] , int len );
 
 void porcentajeDeMujeres( eCliente listadoClientes[] , int len );
+
+void mostrarClientesOrdenadosPorLocalidadYNombreCliente( eCliente listadoClientes[] , int lenC );

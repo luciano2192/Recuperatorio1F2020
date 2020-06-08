@@ -305,12 +305,10 @@ int bajaMascota( eMascota listadoMascotas[] , int len , int id ) {
 int eliminarMascota( eMascota listadoMascotas[] , int len ) {
     int salida = -1;
     int auxID;
-    int indexMascota;
     int mascotaEliminada;
     imprimirMascotas( listadoMascotas , len );
     getDatoGenericoInt( &auxID , "\nIngrese ID de la mascota: " , "ERROR ! ingrese nuevamente el ID" , 0 , len , 3 );
-    indexMascota = buscarMascotaPorID( listadoMascotas , len , auxID );
-    mascotaEliminada = bajaMascota( listadoMascotas , len , auxID );
+    mascotaEliminada = bajaMascota( listadoMascotas , len , buscarMascotaPorID( listadoMascotas , len , auxID ) );
     if( mascotaEliminada == 0 ) {
         salida = 0;
         printf( "\nMASCOTA ELIMINADA CON EXITO.\n" );

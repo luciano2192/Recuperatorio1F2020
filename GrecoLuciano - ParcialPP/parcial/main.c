@@ -6,19 +6,21 @@
 #define TLCLIENTES 10
 #define TLMASCOTAS 20
 #define TLRAZAS 8
-#define TLLOCALIDADES 3
+#define TLOCALIDADES 3
 
 int main()
 {
     eRaza listadoRazas[TLMASCOTAS];
     eMascota listadoMascotas[TLMASCOTAS];
-    eLocalidad listadoLocalidades[TLLOCALIDADES];
+    eLocalidad listadoLocalidades[TLOCALIDADES];
     eCliente listadoClientes[TLCLIENTES];
 
-    harcodeoListadoLocalidades( listadoLocalidades , TLLOCALIDADES );
-    initLocalidades( listadoLocalidades , TLLOCALIDADES );
+    initLocalidades( listadoLocalidades , TLOCALIDADES );
+    harcodeoListadoLocalidades( listadoLocalidades , TLOCALIDADES );
+
     harcodeoListadoClientes( listadoClientes , TLCLIENTES );
     initClientesLibres( listadoClientes , TLCLIENTES );
+
 
     initRazas( listadoRazas , TLRAZAS );
     harcodeoListadoRaza( listadoRazas , TLMASCOTAS );
@@ -26,7 +28,7 @@ int main()
     harcodeoListadoMascotas( listadoMascotas , TLMASCOTAS );
     initMascotaLibres( listadoMascotas , TLMASCOTAS );
 
-    menuAdministracionClienteMascota( listadoMascotas , TLMASCOTAS , listadoClientes , TLCLIENTES , listadoRazas , TLRAZAS , listadoLocalidades , TLLOCALIDADES );
+    menuAdministracionClienteMascota( listadoMascotas , TLMASCOTAS , listadoClientes , TLCLIENTES , listadoRazas , TLRAZAS , listadoLocalidades , TLOCALIDADES );
 
     return 0;
 }

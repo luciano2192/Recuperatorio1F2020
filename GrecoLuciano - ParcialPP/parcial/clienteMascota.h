@@ -31,3 +31,5 @@ int modificarMascota( eMascota listadoMascotas[] , int len , eCliente listadoCli
 void mostrarClientesConMascotasDelMismoSexo( eMascota listadoMascotas[] , int lenM ,  eCliente listadoClientes[] , int lenC );
 
 void mostrarClientesConSusMascotasYLocalidad( eMascota listadoMascotas[] , int lenM ,  eCliente listadoClientes[] , int lenC , eLocalidad listadoLocalidades[] , int lenL );
+
+void mostrarClientesPorLocalidad(eCliente listadoClientes[] , int lenC , eLocalidad listadoLocalidades[] , int lenL );

@@ -127,37 +127,37 @@
 	<ctype.h>
 	"./utn_funciones.h"
 
-1591653518 source:c:\users\lucho\desktop\recuperatorio1f2020\grecoluciano - parcialpp\parcial\clientemascota.c
+1591657722 source:c:\users\lucho\desktop\recuperatorio1f2020\grecoluciano - parcialpp\parcial\clientemascota.c
 	<stdio.h>
 	<stddef.h>
 	<string.h>
 	<ctype.h>
 	"clienteMascota.h"
 
-1591654955 c:\users\lucho\desktop\recuperatorio1f2020\grecoluciano - parcialpp\parcial\clientemascota.h
+1591656590 c:\users\lucho\desktop\recuperatorio1f2020\grecoluciano - parcialpp\parcial\clientemascota.h
 	"mascotas.h"
 	"clientes.h"
 	"utn_funciones.h"
 
 1590853362 c:\users\lucho\desktop\recuperatorio1f2020\grecoluciano - parcialpp\parcial\mascotas.h
 
-1591654565 c:\users\lucho\desktop\recuperatorio1f2020\grecoluciano - parcialpp\parcial\clientes.h
+1591657631 c:\users\lucho\desktop\recuperatorio1f2020\grecoluciano - parcialpp\parcial\clientes.h
 
 1589601812 c:\users\lucho\desktop\recuperatorio1f2020\grecoluciano - parcialpp\parcial\utn_funciones.h
 
-1591654548 source:c:\users\lucho\desktop\recuperatorio1f2020\grecoluciano - parcialpp\parcial\clientes.c
+1591657864 source:c:\users\lucho\desktop\recuperatorio1f2020\grecoluciano - parcialpp\parcial\clientes.c
 	<stdio.h>
 	<stddef.h>
 	<string.h>
 	"clienteMascota.h"
 
-1591654665 source:c:\users\lucho\desktop\recuperatorio1f2020\grecoluciano - parcialpp\parcial\main.c
+1591655962 source:c:\users\lucho\desktop\recuperatorio1f2020\grecoluciano - parcialpp\parcial\main.c
 	<stdio.h>
 	<stddef.h>
 	<string.h>
 	"clienteMascota.h"
 
-1590858469 source:c:\users\lucho\desktop\recuperatorio1f2020\grecoluciano - parcialpp\parcial\mascotas.c
+1591655596 source:c:\users\lucho\desktop\recuperatorio1f2020\grecoluciano - parcialpp\parcial\mascotas.c
 	<stdio.h>
 	<stddef.h>
 	<string.h>
